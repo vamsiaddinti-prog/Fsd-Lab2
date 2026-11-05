@@ -15,6 +15,12 @@ app.post("/products", (req, res) => {
     });
 });
 
+
+//newly added
+app.get("/", (req, res) => {
+    res.send("Products Non-Persistent App is running successfully!");
+});
+
 app.get("/products", (req, res) => {
     res.status(200).json({
         message: "All products fetched successfully",
@@ -72,9 +78,16 @@ app.delete("/products/:id", (req, res) => {
     }
 });
 
-const PORT = 4000;
-app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+// const PORT = 4000;
+// app.listen(PORT, () => {
+//     console.log(`Server running at http://localhost:${PORT}`);
+// });
+
+
+//newly added
+
+const PORT = process.env.PORT || 4000;
+
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server running on port ${PORT}`);
 });
-
-
