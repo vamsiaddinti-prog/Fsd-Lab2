@@ -40,6 +40,11 @@ app.post("/add-product/:id", updateProduct);
 // Route to handle deleting a product
 app.get("/delete-product/:id", deleteProduct);
 
-app.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`);
+// app.listen(PORT, () => {
+//   console.log(`Server is running at http://localhost:${PORT}`);
+// });
+
+
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server is running on port ${PORT}`);
 });
