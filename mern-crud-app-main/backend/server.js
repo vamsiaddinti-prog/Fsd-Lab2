@@ -99,6 +99,10 @@ app.get("/", (req, res) => {
   res.send({ message: "Welcome to Express Test" });
 });
 //Start the server
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
+// app.listen(port, () => {
+//   console.log(`Server is running at http://localhost:${port}`);
+// });
+
+app.listen(port, "0.0.0.0", () => {
+  console.log(`Server is running on port ${port}`);
 });
