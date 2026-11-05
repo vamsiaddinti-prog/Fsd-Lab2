@@ -24,4 +24,16 @@ router.put("/:id", updateMovieById);
 // Delete by ID
 router.delete("/:id", deleteMovieById);
 
-export default movieRoutes.js;
+//export default movieRoutes.js;
+
+export default router;
+
+
+
+
+
+
+
+
+
+
