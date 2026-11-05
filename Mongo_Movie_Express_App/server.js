@@ -52,6 +52,11 @@ app.post("/api/v1/movies", (req, res) => {
 });
 
 // 3) Read
+
+app.get("/", (req, res) => {
+    res.send("Mongo Movie Express App is running successfully!");
+});  //newly added
+
 app.get("/api/v1/movies", (req, res) => {
     const { category } = req.query;
 
@@ -146,7 +151,7 @@ app.use((err, req, res, next) => {
     });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT,"0.0.0.0", () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
 
