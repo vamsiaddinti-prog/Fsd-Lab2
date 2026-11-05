@@ -7,21 +7,40 @@ const app = express();
 app.use(express.json()); // for parsing JSON
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-const MONGO_URL = "mongodb://admin:admin123@localhost:27017/?authSource=admin";
+// const MONGO_URL = "mongodb://admin:admin123@localhost:27017/?authSource=admin";
+const MONGO_URL = process.env.MONGO_URL;
 const dbName = "library_db";
 
 const client = new MongoClient(MONGO_URL);
 
 let db;
 
+// client
+//   .connect()
+//   .then(() => {
+//     console.log("Connected to MongoDB");
+//     db = client.db(dbName);
+//   })
+//   .catch((err) => {
+//     console.error("Failed to connect to MongoDB", err);
+//     process.exit(1);
+//   });
+
 client
   .connect()
   .then(() => {
     console.log("Connected to MongoDB");
     db = client.db(dbName);
+
+    const PORT = process.env.PORT || 7000;
+
+    app.listen(PORT, "0.0.0.0", () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
   })
   .catch((err) => {
     console.error("Failed to connect to MongoDB", err);
+    process.exit(1);
   });
 
 
@@ -188,10 +207,14 @@ app.use((err, req, res, next) => {
 });
 
 
-const PORT = 7000;
+// const PORT = 7000;
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port ${PORT}`);
+// });
 
+// const PORT = process.env.PORT || 7000;
 
+// app.listen(PORT, "0.0.0.0", () => {
+//   console.log(`Server is running on port ${PORT}`);
+// });
